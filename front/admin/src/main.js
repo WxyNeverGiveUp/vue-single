@@ -6,7 +6,10 @@ import router from './router'
 import VueResource from 'vue-resource';
 import store from './store.js';
 import ElementUI from 'element-ui';
+import './assets/css/base/reset.css';
 import 'element-ui/lib/theme-chalk/index.css';
+/*引入第三方字体库*/
+import './assets/font/font-awesome/css/font-awesome.min.css';
 /* 使用vue2.0配对的ElementUI */
 Vue.use(ElementUI, { size: 'small' });
 /* 使用vue-resource做http请求 */
@@ -26,7 +29,7 @@ router.beforeEach((to, from, next) => {
         }
         else { 
             next({
-                path: '/login',
+                path: '/',
                 query: {
                     redirect: to.fullPath
                 }  // 将跳转的路由path作为参数，登录成功后跳转到该路由

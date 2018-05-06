@@ -6,5 +6,6 @@ module.exports = {
     // user
     userLogin: '/login',
     userAdd: '/addUser',
-    userFetch: '/fetchData',
+    userFetch: '/user/list/fetchData',
+    userDelOne: '/user/list/delOne',
 };

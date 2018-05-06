@@ -70,8 +70,8 @@ module.exports = {
       {
         test: /\.css$/,
         include: [  
-          /src/,//表示在src目录下的css需要编译  
-          '/node_modules/element-ui/lib/'   //增加此项  
+          '/src/', //表示在src目录下的css需要编译  
+          '/node_modules/element-ui/lib/',   //增加此项  
         ],
         use: [
           'style-loader',

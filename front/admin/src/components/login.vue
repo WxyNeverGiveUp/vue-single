@@ -67,21 +67,35 @@ export default{
             var url="/api/login";
             this.$http.post(url,{
                 username: this.loginData.username,
-                userpsw: this.loginData.psw
+                userpsw: this.loginData.userpsw
             },{}).then(function(data){
                 console.log("请求成功！ ",data.body);
                 var content = data.body;
                 console.log(data.body);
                 console.log(data);
                 if (content.code == 200) {
-                    alert('登录成功');
-                    this.$store.commit('changeLogin',data.body[0]);
-                    this.$store.commit('changeUser',{
-                        username: this.loginData.username
-                    });
-                    this.$router.push({ 
-                        path: 'index' 
-                    });
+                    if(this.loginData.userpsw != content.psw){
+                        console.log(this.loginData.userpsw);
+                        this.$message({
+                            type: 'error',
+                            message: '密码错误'
+                        });
+                    }
+                    else if(content.level != 1){
+                        this.$message({
+                            type: 'error',
+                            message: '该账户身份为游客，无法登陆管理系统'
+                        });
+                    }
+                    else{
+                        this.$store.commit('changeLogin',data.body[0]);
+                        this.$store.commit('changeUser',{
+                            username: this.loginData.username
+                        });
+                        this.$router.push({ 
+                            path: 'index' 
+                        });
+                    }
                 }else{
                     alert(content.msg);
                 }
@@ -93,12 +107,15 @@ export default{
             var reg_name =  this.regData.username;
             var reg_psw = this.regData.psw;
             if(reg_psw !== this.regData.tpsw){
-                alert("两次输入密码不正确！");
+                this.$message({
+                    type: 'error',
+                    message: '两次密码不一致'
+                });
                 this.regData.username = "";
                 this.regData.psw = "";
                 this.regData.tpsw = "";
             }else{
-                var url="/api/addUser";
+                var url="/api/addAdmin";
                 this.$http.post(url,{
                     username: this.regData.username,
                     userpsw: this.regData.psw
@@ -106,7 +123,10 @@ export default{
                     console.log("注册请求成功！ ",data.body);
                     console.log(data.body);
                     if (data.body) {
-                        alert('注册成功');
+                        this.$message({
+                            type: 'success',
+                            message: '注册成功'
+                        });
                         this.loginbtn()
                     }
                 },function(response){

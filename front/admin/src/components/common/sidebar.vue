@@ -7,7 +7,9 @@
           			<el-menu-item index="1-1">
           				<router-link to="/user/list">账号列表</router-link>
           			</el-menu-item>
-          			<el-menu-item index="1-2">增添账号</el-menu-item>
+          			<el-menu-item index="1-2">
+                        <router-link to="/user/add">添加账号</router-link>
+                    </el-menu-item>
         		</el-menu-item-group>
       		</el-submenu>
       		<el-submenu index="2">

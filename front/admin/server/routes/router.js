@@ -5,9 +5,11 @@ let user = require('../controller/user');
 let api = require('../api');
 
 // 管理员用户添加
-router.post(api.userAddAdmin, user.addAdmin);
+router.post(api.userAddAdmin, user.usertest, user.addAdmin);
 // 游客用户添加
-router.post(api.userAddTourist, user.addTourist);
+router.post(api.userAddTourist, user.usertest, user.addTourist);
+// 自定义用户添加
+router.post(api.userAdd, user.usertest, user.addUser);
 // 用户登录
 router.post(api.userLogin, user.login);
 // 用户列表
@@ -16,7 +18,6 @@ router.post(api.userFetch, user.fetch);
 router.post(api.userDelOne, user.delOne);
 // 修改一个用户的信息
 router.post(api.userUpdate, user.update);
-
 
 
 module.exports = router;

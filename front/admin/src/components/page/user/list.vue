@@ -99,7 +99,7 @@
                     tableData: [], // 总数据
                     infoList: [], // 每一页封装的数据
                     total: 0, // 总页数
-                    pageSize: 3, // 每页展示的数量
+                    pageSize: 10, // 每页展示的数量
                     currentPage: 1, // 当前页
                 },
     			load: false,
@@ -107,12 +107,12 @@
                 dialogFormVisible: false,
                 /* form 的内容*/
                 form: {
-                  psw: '',
-                  username: '',
-                  delivery: false,
-                  type: [],
-                  resource: '',
-                  desc: ''
+                    psw: '',
+                    username: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
                 },
                 formLabelWidth: '120px'
     		}

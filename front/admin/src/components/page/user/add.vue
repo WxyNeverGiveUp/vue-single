@@ -1,39 +1,39 @@
 <template>
-	<div>
-		<Header></Header>
-        <el-container>
-            <Sidebar></Sidebar>
-            <el-main>
-                <el-form :model="regData" ref="regData" label-width="80px;" :rules="rules" label-position="left">
-                	<el-form-item label="账号" prop="username">
-                		<el-input v-model="regData.username"></el-input>
-                	</el-form-item>
-                	<el-form-item label="密码" prop="psw">
-                		<el-input v-model="regData.psw" type="password"></el-input>
-                	</el-form-item>
-                	<el-form-item label="重复密码" prop="tpsw">
-                		<el-input v-model="regData.tpsw" type="password"></el-input>
-                	</el-form-item>
-                	<el-form-item label="用户类型" prop="level">
-                		<el-select v-model="regData.level">
-                			<el-option label="游客账户" value="0"></el-option>
-                			<el-option label="管理员账户" value="1"></el-option>
-                		</el-select>
-                	</el-form-item>
-                	<el-form-item>
-                	    <el-button type="primary" @click="submit_req('regData')">立即注册</el-button>
-                	</el-form-item>
-                </el-form>
-            </el-main>
-        </el-container>
-        <Footer></Footer>
-	</div>
+	<el-form :model="regData" ref="regData" label-width="80px;" :rules="rules" label-position="left">
+		<el-form-item label="账号" prop="username">
+			<el-input v-model="regData.username"></el-input>
+		</el-form-item>
+		<el-form-item label="密码" prop="psw">
+			<el-input v-model="regData.psw" type="password"></el-input>
+		</el-form-item>
+		<el-form-item label="重复密码" prop="tpsw">
+			<el-input v-model="regData.tpsw" type="password"></el-input>
+		</el-form-item>
+		<el-form-item label="用户类型" prop="level">
+			<el-select v-model="regData.level">
+				<el-option label="游客账户" value="0"></el-option>
+				<el-option label="管理员账户" value="1"></el-option>
+			</el-select>
+		</el-form-item>
+		<el-form-item label="商品图片">
+            <el-upload
+            	name="avatar"
+                class="upload-demo"
+                action="http://localhost:8080/api/article/upload"
+                :file-list="regData.imgs"
+                list-type="picture">
+                <el-button size="small" type="primary">点击上传</el-button>
+                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+            </el-upload>
+        </el-form-item>
+		<el-form-item>
+		    <el-button type="primary" @click="submit_req('regData')">立即注册</el-button>
+		</el-form-item>
+	</el-form>
 </template>
 
 <script>
-	import Header from '../../common/header.vue';
-	import Sidebar from '../../common/sidebar.vue';
-	import Footer from '../../common/footer.vue';
+	
 	export default{
 		data(){
 			var validatePass2 = (rule, value, callback) => {
@@ -93,18 +93,10 @@
 				})
 			},
 		},
-		components: {
-			Header,
-			   Sidebar,
-			   Footer,
-		},
 	}
 </script>
 
 <style>
-	.el-main{
-		padding-top: 0;
-	}
 	.el-form{
 		width: 550px;
 		margin: 0 auto;

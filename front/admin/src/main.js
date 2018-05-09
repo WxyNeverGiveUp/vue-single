@@ -6,14 +6,21 @@ import router from './router'
 import VueResource from 'vue-resource';
 import store from './store.js';
 import ElementUI from 'element-ui';
+/* 引入axios */
+import axios from 'axios'
 import './assets/css/base/reset.css';
 import 'element-ui/lib/theme-chalk/index.css';
-/*引入第三方字体库*/
+/* 引入markdown编辑器 */
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+/* 引入第三方字体库*/
 import './assets/font/font-awesome/css/font-awesome.min.css';
 /* 使用vue2.0配对的ElementUI */
 Vue.use(ElementUI, { size: 'small' });
 /* 使用vue-resource做http请求 */
 Vue.use(VueResource);
+/* 使用markdown编辑器*/
+Vue.use(mavonEditor);
 
 Vue.config.productionTip = false
 

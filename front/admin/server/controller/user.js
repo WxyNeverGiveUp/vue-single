@@ -1,13 +1,10 @@
-var models = require('../db_config/db');//数据库链接信息
-var mysql = require('mysql'); // 数据库
 let moment = require('moment'); // 格式化时间
 var func = require('../sql/sqlfun'); // 封装连接池的功能
-var $sql = require('../sql/sql');//sql语句
+var $sql = require('../sql/sql');// sql语句
+let path = require('path'); // 路径模块
 
 // 数据库普通连接
 // var conn = mysql.createConnection(models.mysql);
-// 数据库连接池
-let pool = mysql.createPool(models.mysql); 
 
 // 格式化 参数
 function formatData(rows) {
@@ -150,12 +147,11 @@ module.exports = {
      * @return 所有用户信息
     */
     fetch(req, res){
-        pool.getConnection(function(err,conn){
             var sql = $sql.user.fetch;   
             var params = req.body;
             console.log("sql",sql);
             console.log("params",params);
-            conn.query(sql, [], function(err, result) {    
+            func.connPool(sql, [], function(err, result) {    
                 if (err) {       
                     console.log(err);
                 }        
@@ -178,10 +174,6 @@ module.exports = {
                     res.end('is over');
                 }
             })
-
-            // 释放连接池
-            conn.release();
-        })
     },
     /**
      * 删除一个用户
@@ -232,4 +224,27 @@ module.exports = {
             }
         })
     },
+    /**
+     * 上传图片
+     * @param img 图片地址
+     * @return 图片上传是否成功的信息
+    */
+    upload(req,res){
+        let sql = $sql.user.upload;    
+        let params = req.body;
+        console.log("sql",sql);
+        console.log("params",params);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+        res.header("X-Powered-By",' 3.2.1')
+        res.header("Content-Type", "application/json;charset=utf-8");
+        let absolutePath = path.resolve(__dirname, req.file.path);
+        let a  = 2;
+
+        func.connPool(sql, [absolutePath], (err, rows) => {
+            console.log(a);
+            res.send({code: 200, msg: 'done', url: absolutePath});
+        }, res);
+    }
 }

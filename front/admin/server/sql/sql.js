@@ -10,6 +10,7 @@ var sqlMap = {
         fetch: 'SELECT * FROM admin_user;', // 查找用户列表
         delOne: 'DELETE FROM admin_user WHERE user_id = ?', // 删除一个用户
         update: 'UPDATE admin_user SET userpassword = ? WHERE username = ?', // 修改密码
+        upload: 'INSERT INTO img(img_path) VALUES(?)', // 上传图片
     }
 }
 

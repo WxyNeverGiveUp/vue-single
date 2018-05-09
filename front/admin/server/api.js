@@ -3,7 +3,7 @@ let path = '/api';
 
 module.exports = {
    
-    // user
+    /*user*/
     userLogin: '/login',
     userAddTourist: '/addTourist', // 添加游客用户
     userAddAdmin: '/addAdmin', // 添加管理员用户
@@ -11,4 +11,7 @@ module.exports = {
     userFetch: '/user/list/fetchData',
     userDelOne: '/user/list/delOne',
     userUpdate: '/user/list/update',
+
+    /*article*/
+    upload: '/article/upload', // 上传文件
 };

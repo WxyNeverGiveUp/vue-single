@@ -1,92 +1,82 @@
 <template>
 	<div>
-		<Header></Header>
-        <el-container>
-            <Sidebar></Sidebar>
-            <el-main>
-                <template>
-                    <el-table
-                    	class="my-table"
-						v-loading="load"
-                      	:data="paginationData.tableData"
-                      	:cell-style="cellStyle"
-                      	border
-                      	stripe
-                      	style="width: 100%">
-                        <el-table-column
-                            type="index"
-                            :index="typeIndex"
-                            label="序号"
-                            width="180">
-                        </el-table-column>
-                      	<el-table-column
-                        	prop="user_id"
-                        	label="数据库内序号"
-                        	width="180">
-                      	</el-table-column>
-                        <el-table-column
-                            prop="level"
-                            label="账号身份"
-                            width="180">
-                        </el-table-column>
-                      	<el-table-column
-                        	prop="username"
-                        	label="账号"
-                        	width="180">
-                      	</el-table-column>
-                      	<el-table-column
-                        	prop="userpassword"
-                        	label="密码">
-                      	</el-table-column>
-                      		<el-table-column
-                      	  	label="操作">
-                      	  	<template scope="scope">
-				                    <el-button
-				                    	type="primary"
-				                        @click="toUpdate(scope.row.username)">修改
-				                    </el-button>
-				                    <el-button
-				                        type="danger"
-				                        @click="delOne(scope.row.user_id)">删除
-				                    </el-button>
-                				</template>
-                      		</el-table-column>
-                    </el-table>
-                </template>
-                  <el-pagination
-                    background
-                    layout="prev, pager, next"
-                    :page-size='paginationData.pageSize'
-                    :current-page='paginationData.currentPage'
-                    :total="paginationData.total"
-                    @current-change="handleCurrentChange">
-                  </el-pagination>
-                  <!-- dialog -->
-                  <el-dialog title="修改账户信息" :visible.sync="dialogFormVisible">
-                    <el-form :model="form">
-                      <el-form-item label="新密码" :label-width="formLabelWidth">
-                        <el-input v-model="form.psw" auto-complete="off" type="password"></el-input>
-                      </el-form-item>
-                      <el-form-item label="重复密码" :label-width="formLabelWidth">
-                        <el-input v-model="form.tpsw" auto-complete="off" type="password"></el-input>
-                      </el-form-item>
-                    </el-form>
-                    <div slot="footer" class="dialog-footer">
-                      <el-button @click="dialogFormVisible = false">取 消</el-button>
-                      <el-button type="primary" @click="update">确 定</el-button>
-                    </div>
-                  </el-dialog>
-            </el-main>
-        </el-container>
-        <Footer></Footer>
+    <template>
+        <el-table
+            class="my-table"
+	       v-loading="load"
+            :data="paginationData.tableData"
+            :cell-style="cellStyle"
+            border
+            stripe
+            style="width: 100%">
+            <el-table-column
+                type="index"
+                :index="typeIndex"
+                label="序号"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="user_id"
+                label="数据库内序号"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="level"
+                label="账号身份"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="username"
+                label="账号"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="userpassword"
+                label="密码">
+            </el-table-column>
+                <el-table-column
+                label="操作">
+                <template scope="scope">
+	                    <el-button
+	                       type="primary"
+	                        @click="toUpdate(scope.row.username)">修改
+	                    </el-button>
+	                    <el-button
+	                        type="danger"
+	                        @click="delOne(scope.row.user_id)">删除
+	                    </el-button>
+                    </template>
+                </el-table-column>
+        </el-table>
+    </template>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :page-size='paginationData.pageSize'
+        :current-page='paginationData.currentPage'
+        :total="paginationData.total"
+        @current-change="handleCurrentChange">
+      </el-pagination>
+      <!-- dialog -->
+      <el-dialog title="修改账户信息" :visible.sync="dialogFormVisible">
+        <el-form :model="form">
+          <el-form-item label="新密码" :label-width="formLabelWidth">
+            <el-input v-model="form.psw" auto-complete="off" type="password"></el-input>
+          </el-form-item>
+          <el-form-item label="重复密码" :label-width="formLabelWidth">
+            <el-input v-model="form.tpsw" auto-complete="off" type="password"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="update">确 定</el-button>
+        </div>
+      </el-dialog>
+            
 	</div>
 </template>
 
 <script>
-    import Header from '../../common/header.vue';
-    import Sidebar from '../../common/sidebar.vue';
-	import Footer from '../../common/footer.vue';
-
     export default {
     	data(){
     		return {
@@ -242,16 +232,9 @@
                 return this.$store.state.user
             }
         },
-        components: {
-        	Header,
-            Sidebar,
-            Footer,
-        },
     }
 </script>
 
 <style>
-	.el-main{
-        padding-top: 0;
-    }
+	
 </style>

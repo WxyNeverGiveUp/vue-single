@@ -1,22 +1,24 @@
 <template>
 	<el-aside>
-		<el-menu :default-openeds="['1']">
+		  <el-menu :default-openeds="['1']">
       		<el-submenu index="1">
         		<template slot="title">账号管理</template>
         		<el-menu-item-group>
           			<el-menu-item index="1-1">
-          				<router-link to="/user/list">账号列表</router-link>
+          				  <router-link to="/user/list">账号列表</router-link>
           			</el-menu-item>
           			<el-menu-item index="1-2">
-                        <router-link to="/user/add">添加账号</router-link>
-                    </el-menu-item>
+                    <router-link to="/user/add">添加账号</router-link>
+                </el-menu-item>
         		</el-menu-item-group>
       		</el-submenu>
       		<el-submenu index="2">
         	<template slot="title">文章管理</template>
         		<el-menu-item-group>
           			<el-menu-item index="2-1">文章列表</el-menu-item>
-          			<el-menu-item index="2-2">新增文章</el-menu-item>
+          			<el-menu-item index="2-2">
+                    <router-link to="/article/add">添加文章</router-link>
+                </el-menu-item>
         		</el-menu-item-group>
       		</el-submenu>
       		<el-submenu index="3">

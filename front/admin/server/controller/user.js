@@ -3,8 +3,6 @@ var func = require('../sql/sqlfun'); // 封装连接池的功能
 var $sql = require('../sql/sql');// sql语句
 let path = require('path'); // 路径模块
 
-// 数据库普通连接
-// var conn = mysql.createConnection(models.mysql);
 
 // 格式化 参数
 function formatData(rows) {
@@ -234,12 +232,8 @@ module.exports = {
         let params = req.body;
         console.log("sql",sql);
         console.log("params",params);
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-        res.header("X-Powered-By",' 3.2.1')
-        res.header("Content-Type", "application/json;charset=utf-8");
-        let absolutePath = path.resolve(__dirname, req.file.path);
+        
+        let absolutePath = path.resolve(__dirname, '../'+req.file.path); // 由于multer中间件，上传的文件信息会绑定到 req.file中 , '../'代表回退一级目录
         let a  = 2;
 
         func.connPool(sql, [absolutePath], (err, rows) => {

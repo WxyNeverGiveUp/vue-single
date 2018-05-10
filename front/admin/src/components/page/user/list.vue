@@ -110,7 +110,7 @@
         created(){
         	this.load = true;
         	var url="/api/user/list/fetchData";
-        	this.$http.post(url,{
+        	this.$http.get(url,{
         	},{}).then(function(data){
         	    console.log("请求成功！ ",data.body);
         	    var content = data.body;

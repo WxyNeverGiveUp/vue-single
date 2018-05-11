@@ -3,7 +3,7 @@
     <template>
         <el-table
             class="my-table"
-	       v-loading="load"
+	        v-loading="load"
             :data="paginationData.tableData"
             :cell-style="cellStyle"
             border

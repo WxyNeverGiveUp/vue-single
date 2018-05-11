@@ -16,4 +16,5 @@ module.exports = {
     upload: '/article/upload', // 上传文件
     articleAdd: '/article/add', // 添加文章
     articleFetch: '/article/fetch', // 添加文章
+    articleTypeFetch: '/article/typeFetch', // 添加文章
 };

@@ -2,8 +2,8 @@
     <div class="login">
         <el-form 
             ref="loginData" 
-            :class="{'hide': !isHide}" 
             :rules="loginRules" 
+            :class="{'hide': !isHide}" 
             :model="loginData">
             <h1>系统登录</h1>
             <el-form-item prop="username">
@@ -19,8 +19,8 @@
         </el-form>
         <el-form 
             ref="regData" 
-            :class="{'hide': isHide}" 
             :rules="regRules" 
+            :class="{'hide': isHide}" 
             :model="regData">
             <h1>账号注册</h1>
             <el-form-item prop="username">
@@ -198,6 +198,7 @@ export default{
     },
 }
 </script>
+
 <style scoped>
     .login{
         padding-top: 100px;

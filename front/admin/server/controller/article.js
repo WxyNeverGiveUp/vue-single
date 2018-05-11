@@ -62,11 +62,11 @@ module.exports = {
     */
     add(req,res){
         let sql = $sql.article.add;
-        let params = req.query;
+        let params = req.body;
         console.log("sql",sql);
         console.log("params",params);
         let time = CurentTime();
-        func.connPool(sql,[params.name, time, params.content, params.up],function(err,result) {
+        func.connPool(sql,[params.title, time, params.content, params.up, params.type],function(err,result) {
             if(err){
                 console.log(err);
             }
@@ -101,4 +101,23 @@ module.exports = {
             }
         })
     },
+    getArticleType(req,res){
+        let sql = $sql.article.getArticleType;
+        let params = req.query;
+        console.log("sql",sql);
+        console.log("params",params);
+        func.connPool(sql,[],function(err,result){
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                result = formatData(result);
+                res.json({
+                    code: '200',
+                    msg: '获取文章成功',
+                    list: result,
+                })
+            }
+        })
+    }
 }

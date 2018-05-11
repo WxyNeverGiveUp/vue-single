@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '@/components/login'
-import index from '@/components/page/index'
+import login from '@/components/login' // 登录页面
+import index from '@/components/page/index' // 后台管理页面
 import welcome from '@/components/page/welcome' // 欢迎页面
 import userList from '@/components/page/user/list' // 用户列表
 import userAdd from '@/components/page/user/add'  // 用户添加

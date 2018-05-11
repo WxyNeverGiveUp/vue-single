@@ -228,17 +228,16 @@ module.exports = {
      * @return 图片上传是否成功的信息
     */
     upload(req,res){
+        let resourcesNginx = "http://static.net/"; // 自己配置的静态资源服务器
         let sql = $sql.user.upload;    
         let params = req.body;
         console.log("sql",sql);
         console.log("params",params);
         
-        let absolutePath = path.resolve(__dirname, '../'+req.file.path); // 由于multer中间件，上传的文件信息会绑定到 req.file中 , '../'代表回退一级目录
-        let a  = 2;
-
+        // let absolutePath = path.resolve(__dirname, '../'+ req.file.path); // 照片本地路径
+        let absolutePath = resourcesNginx + req.file.path; // 由于multer中间件，上传的文件信息会绑定到 req.file中 , '../'代表回退一级目录
         func.connPool(sql, [absolutePath], (err, rows) => {
-            console.log(a);
             res.send({code: 200, msg: 'done', url: absolutePath});
-        }, res);
+        });
     }
 }

@@ -14,9 +14,10 @@ var sqlMap = {
     },
     // 文章
     article: {
-        add: 'INSERT INTO article(article_name, article_time, article_content, article_up) VALUES(?, ?, ?, ?);', // 添加文章
+        add: 'INSERT INTO article(article_name, article_time, article_content, article_up, article_type) VALUES(?, ?, ?, ?, ?);', // 添加文章
         edit: '', // 修改文章
         fetch: 'SELECT * FROM article;', // 获取文章内容
+        getArticleType: 'SELECT * FROM article_sort;', // 获取文章类型列表
     }
 }
 

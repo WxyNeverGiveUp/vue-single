@@ -6,9 +6,10 @@ import router from './router'
 import VueResource from 'vue-resource';
 import store from './store.js';
 import ElementUI from 'element-ui';
-/* 引入axios */
-import axios from 'axios'
 import './assets/css/base/reset.css';
+/* 引入axios */
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import 'element-ui/lib/theme-chalk/index.css';
 /* 引入markdown编辑器 */
 import mavonEditor from 'mavon-editor'
@@ -23,6 +24,7 @@ Vue.use(VueResource);
 Vue.use(mavonEditor);
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios
 
 
 // 全局导航钩子

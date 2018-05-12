@@ -101,6 +101,10 @@ module.exports = {
             }
         })
     },
+    /**
+     * 获取文章分类
+     * @return json格式的所有文章分类
+    */
     getArticleType(req,res){
         let sql = $sql.article.getArticleType;
         let params = req.query;
@@ -119,5 +123,51 @@ module.exports = {
                 })
             }
         })
-    }
+    },
+    /**
+     * 删除文章
+     * @param article_id 文章id
+     * @return 文章是否删除成功的信息
+    */
+    delOne(req,res){
+        let sql = $sql.article.delOne;
+        let params = req.body;
+        console.log("sql",sql)
+        console.log("params",params)
+        func.connPool(sql, [params.article_id], function(err,result){
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                res.json({
+                    code: '200',
+                    msg: '删除文章成功',
+                })
+            }
+        })
+    },
+    /**
+     * 修改文章时获取某一篇文章
+     * @param article_id 文章id
+     * @return 文章内容，文章标题，文章分类
+    */
+    fetchOne(req,res){
+        let sql = $sql.article.fetchOne;
+        let params = req.query;
+        console.log("sql",sql)
+        console.log("params",params)
+        func.connPool(sql, [params.article_id], function(err,result){
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                let article = formatData(result)
+                res.json({
+                    code: '200',
+                    msg: '获取文章成功',
+                    article: article,
+                })
+            }
+        })
+    },
 }

@@ -96,7 +96,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.el-form{
 		width: 550px;
 		margin: 0 auto;

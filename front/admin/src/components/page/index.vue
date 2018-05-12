@@ -8,20 +8,22 @@
                             <template slot="title">账号管理</template>
                             <el-menu-item-group>
                                 <el-menu-item index="1-1">
-                                      <router-link to="/index/user/list">账号列表</router-link>
+                                    <router-link to="/index/user/list">账号列表</router-link>
                                 </el-menu-item>
                                 <el-menu-item index="1-2">
-                                <router-link to="/index/user/add">添加账号</router-link>
-                            </el-menu-item>
+                                    <router-link to="/index/user/add">添加账号</router-link>
+                                </el-menu-item>
                             </el-menu-item-group>
                         </el-submenu>
                         <el-submenu index="2">
                         <template slot="title">文章管理</template>
                             <el-menu-item-group>
-                                <el-menu-item index="2-1">文章列表</el-menu-item>
+                                <el-menu-item index="2-1">
+                                    <router-link to="/index/article/list">文章列表</router-link>
+                                </el-menu-item>
                                 <el-menu-item index="2-2">
-                                <router-link to="/index/article/add">添加文章</router-link>
-                            </el-menu-item>
+                                    <router-link to="/index/article/add">添加文章</router-link>
+                                </el-menu-item>
                             </el-menu-item-group>
                         </el-submenu>
                         <el-submenu index="3">
@@ -53,7 +55,6 @@
 
 <script>
     import Header from '../common/header.vue';
-    import Sidebar from '../common/sidebar.vue';
 	import Footer from '../common/footer.vue';
 
     export default {
@@ -65,7 +66,6 @@
         },
         components: {
         	Header,
-            Sidebar,
             Footer,
         },
     }

@@ -34,19 +34,19 @@
                 prop="userpassword"
                 label="密码">
             </el-table-column>
-                <el-table-column
+            <el-table-column
                 label="操作">
                 <template scope="scope">
-	                    <el-button
-	                       type="primary"
-	                        @click="toUpdate(scope.row.username)">修改
-	                    </el-button>
-	                    <el-button
-	                        type="danger"
-	                        @click="delOne(scope.row.user_id)">删除
-	                    </el-button>
-                    </template>
-                </el-table-column>
+                    <el-button
+                        type="primary"
+                        @click="toUpdate(scope.row.username)">修改
+                    </el-button>
+                    <el-button
+                        type="danger"
+                        @click="delOne(scope.row.user_id)">删除
+                    </el-button>
+                </template>
+            </el-table-column>
         </el-table>
     </template>
       <el-pagination

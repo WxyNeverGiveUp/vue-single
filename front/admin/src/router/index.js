@@ -6,6 +6,8 @@ import welcome from '@/components/page/welcome' // 欢迎页面
 import userList from '@/components/page/user/list' // 用户列表
 import userAdd from '@/components/page/user/add'  // 用户添加
 import articleAdd from '@/components/page/article/add' // 文章添加
+import articleList from '@/components/page/article/list' // 文章列表
+import articleEdit from '@/components/page/article/edit' // 修改文章
 
 Vue.use(Router)
 
@@ -45,6 +47,16 @@ export default new Router({
                 // 文章添加
                 path: '/index/article/add',
                 component: articleAdd,
+            },
+            {
+                // 文章列表
+                path: '/index/article/list',
+                component: articleList,
+            },
+            {
+                // 文章列表
+                path: '/index/article/edit',
+                component: articleEdit,
             }
         ]
     },

@@ -2,7 +2,7 @@
 	<el-header>
 		<section v-show="user">
         <!-- 这里的user是从下面JavaScript的computed的user()方法中得到的。 -->
-            <p>欢迎你, {{user}}</p>
+            <p>欢迎你, {{ user }}</p>
         </section>
 	</el-header>
 </template>

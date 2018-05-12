@@ -18,6 +18,8 @@ var sqlMap = {
         edit: '', // 修改文章
         fetch: 'SELECT * FROM article;', // 获取文章内容
         getArticleType: 'SELECT * FROM article_sort;', // 获取文章类型列表
+        delOne: 'DELETE FROM article WHERE article_id = ?;', // 删除一篇文章
+        fetchOne: 'SELECT * FROM article WHERE article_id = ?;', // 获取一篇文章
     }
 }
 

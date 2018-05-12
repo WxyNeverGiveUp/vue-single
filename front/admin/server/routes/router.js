@@ -17,10 +17,14 @@ router.post(api.userDelOne, user.delOne);// 删除一个用户
 router.post(api.userUpdate, user.update);// 修改一个用户的信息
 
 /*article*/
-router.post(api.upload, upload.single('avatar'), user.upload);// 上传照片
-router.post(api.articleAdd, article.add); // 添加文章
+router.get(api.articleFetchOne, article.fetchOne); // 获取一篇文章
 router.get(api.articleFetch, article.fetch); // 获取文章内容
 router.get(api.articleTypeFetch, article.getArticleType); // 获取文章类型
+
+router.post(api.upload, upload.single('avatar'), user.upload);// 上传照片
+router.post(api.articleAdd, article.add); // 添加文章
+router.post(api.articleDelOne, article.delOne); // 删除一篇文章
+
 
 
 module.exports = router;

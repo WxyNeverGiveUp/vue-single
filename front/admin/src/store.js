@@ -10,6 +10,7 @@ export default new Vuex.Store({
 	state:{
 		isLogin: 0,
 		user: '',
+		article: '',
 	},
 	actions:{
 
@@ -20,6 +21,9 @@ export default new Vuex.Store({
 		},
 		changeUser(state, data){
 		  	state.user = data.username;
+		},
+		chooseArticle(state, data){
+		  	state.article = data;
 		},
 	},
 	// 状态持久化插件

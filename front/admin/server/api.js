@@ -19,4 +19,5 @@ module.exports = {
     articleTypeFetch: '/article/typeFetch', // 添加文章
     articleDelOne: '/article/delOne', // 删除一篇文章
     articleFetchOne: '/article/fetchOne', // 获取一篇文章
+    articleUpOne: '/article/upOne', // 置顶一篇文章
 };

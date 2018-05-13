@@ -115,8 +115,7 @@ export default{
                         userpsw: this.loginData.userpsw
                     },{}).then(function(data){
                         console.log("请求成功！ ",data.body);
-                        var content = data.body;
-                        console.log(data.body);
+                        let content = data.body;
                         console.log(data);
                         if (content.code == 200) {
                             if(this.loginData.userpsw != content.psw){
@@ -144,7 +143,7 @@ export default{
                         }else{
                             this.$message({
                                 type: 'error',
-                                message: '操作失败'
+                                message: content.msg
                             });
                         }
                     },function(response){
@@ -211,5 +210,6 @@ export default{
         border-radius: 6px;
         box-shadow: 0 0 25px #cac6c6;
         background: #fff;
+        text-align: center;
     }
 </style>

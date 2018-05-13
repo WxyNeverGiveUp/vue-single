@@ -24,6 +24,7 @@ router.get(api.articleTypeFetch, article.getArticleType); // 获取文章类型
 router.post(api.upload, upload.single('avatar'), user.upload);// 上传照片
 router.post(api.articleAdd, article.add); // 添加文章
 router.post(api.articleDelOne, article.delOne); // 删除一篇文章
+router.post(api.articleUpOne, article.upOne); // 置顶一篇文章
 
 
 

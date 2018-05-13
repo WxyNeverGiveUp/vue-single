@@ -93,6 +93,17 @@ module.exports = {
             }
             if(result){
                 result = formatData(result);
+                /* 处理数据 */
+                result.sort((a,b)=>{
+                    return b.article_up - a.article_up;
+                })
+                result.forEach(function(item,index){
+                    if(item.article_up == 1){
+                        item.article_up = '置顶'
+                    }else{
+                        item.article_up = '未置顶'
+                    }
+                })
                 res.json({
                     code: '200',
                     msg: '获取文章成功',
@@ -166,6 +177,36 @@ module.exports = {
                     code: '200',
                     msg: '获取文章成功',
                     article: article,
+                })
+            }
+        })
+    },
+    /**
+     * 选择是否置顶文章
+     * @param article_up 是否置顶
+     * @param article_id 文章id
+     * @return 是否成功置顶文章的信息
+    */
+    upOne(req,res){
+        let sql = $sql.article.upOne;
+        let params = req.body;
+        console.log("sql",sql);
+        console.log("params",params);
+        func.connPool(sql, [params.article_up, params.article_id],function(err, result){
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                let msg = "";
+                if(params.article_up == 1){
+                    msg = '置顶文章成功';
+                }
+                else{
+                    msg = '取消置顶成功';
+                }
+                res.json({
+                    code: '200',
+                    msg: msg,
                 })
             }
         })

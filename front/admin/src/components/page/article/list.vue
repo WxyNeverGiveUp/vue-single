@@ -22,6 +22,10 @@
 			            width="180">
 			        </el-table-column>
 			        <el-table-column
+			            prop="article_type"
+			            label="文章分类">
+			        </el-table-column>
+			        <el-table-column
 			            prop="article_time"
 			            label="发布时间"
 			            width="180">
@@ -31,12 +35,14 @@
 			            label="是否置顶">
 			        </el-table-column>
 			        <el-table-column
-			            prop="article_type"
-			            label="文章分类">
-			        </el-table-column>
-			        <el-table-column
-			            label="操作">
+			            label="操作"
+			            width="300">
 			            <template scope="scope">
+			            	<el-button
+								type="success"
+			            		@click="upOne(scope.$index,scope.row.article_id,scope.row)">
+			            		置顶/取消置顶
+			            	</el-button>
 			                <el-button
 			                    type="primary"
 			                    @click="toUpdate(scope.row.article_id)">修改
@@ -76,7 +82,7 @@
 				    pageSize: 10, // 每页展示的数量
 				    currentPage: 1, // 当前页
 				},
-				load: false
+				load: false,
 			}
 		},
 		methods: {
@@ -114,6 +120,31 @@
 	                        message: '已取消删除'
 	                    });          
                 	});
+				},
+				/*置顶文章或取消置顶*/
+				upOne: function(index,id,row){
+					let url = "/api/article/upOne";
+					let up = 1;
+					let newContent = "置顶";
+					if(row.article_up == "置顶"){
+						up = 0;
+						newContent = "未置顶"
+					}
+					this.$axios.post(url,{
+						article_id: id,
+						article_up: up
+					}).then((res)=>{
+						let data = res.data;
+						if(data.code == 200){
+							this.paginationData.tableData[index].article_up = newContent; // 更改dom 信息
+							this.$message({
+								type: 'success',
+								message: data.msg
+							})
+						}
+					}).catch((err)=>{
+						console.log(err);
+					})
 				},
 				/*计算分页*/
 				computerArr: function(){

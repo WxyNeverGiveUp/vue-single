@@ -10,7 +10,7 @@ export default new Vuex.Store({
 	state:{
 		isLogin: 0,
 		user: '',
-		article: '',
+		article: '', 
 	},
 	actions:{
 

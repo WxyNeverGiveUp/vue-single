@@ -12,45 +12,6 @@ function formatData(rows) {
     });
 }
 
-/*获取当前时间*/
-function CurentTime(){ 
-        var now = new Date();
-       
-        var year = now.getFullYear();       //年
-        var month = now.getMonth() + 1;     //月
-        var day = now.getDate();            //日
-       
-        var hh = now.getHours();            //时
-        var mm = now.getMinutes();          //分
-        var ss = now.getSeconds();            //秒
-       
-        var clock = year + "-";
-       
-        if(month < 10)
-            clock += "0";
-       
-        clock += month + "-";
-       
-        if(day < 10)
-            clock += "0";
-           
-        clock += day + " ";
-       
-        if(hh < 10)
-            clock += "0";
-           
-        clock += hh + ":";
-        if (mm < 10) 
-            clock += '0'; 
-
-        clock += mm + ":"; 
-        if (ss < 10) 
-            clock += '0'; 
-
-        clock += ss; 
-        return(clock); 
-}
-
 module.exports = {
     /**
      * 新增文章
@@ -65,7 +26,7 @@ module.exports = {
         let params = req.body;
         console.log("sql",sql);
         console.log("params",params);
-        let time = CurentTime();
+        let time = func.CurentTime();
         func.connPool(sql,[params.title, time, params.content, params.up, params.type],function(err,result) {
             if(err){
                 console.log(err);
@@ -177,6 +138,32 @@ module.exports = {
                     code: '200',
                     msg: '获取文章成功',
                     article: article,
+                })
+            }
+        })
+    },
+    /**
+     * 修改文章
+     * @param article_name 文章名字
+     * @param article_content 文章内容
+     * @param article_type 文章分类
+     * @param article_id 文章id
+     * @return 文章是否修改成功的信息
+    */
+    edit(req,res){
+        let sql = $sql.article.edit;
+        let params = req.body;
+        console.log('sql',sql);
+        console.log('params',params);
+        func.connPool(sql, [params.article_name, params.article_content, params.article_type, params.article_id], function(err,result){
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                console.log(result);
+                res.json({
+                    code: '200',
+                    msg: '修改文章成功',
                 })
             }
         })

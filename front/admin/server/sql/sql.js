@@ -15,12 +15,19 @@ var sqlMap = {
     // 文章
     article: {
         add: 'INSERT INTO article(article_name, article_time, article_content, article_up, article_type) VALUES(?, ?, ?, ?, ?);', // 添加文章
-        edit: '', // 修改文章
+        edit: 'UPDATE article SET article_name = ?, article_content = ?, article_type = ? WHERE article_id = ?;', // 修改文章
         fetch: 'SELECT * FROM article;', // 获取文章内容
         getArticleType: 'SELECT * FROM article_sort;', // 获取文章类型列表
         delOne: 'DELETE FROM article WHERE article_id = ?;', // 删除一篇文章
         fetchOne: 'SELECT * FROM article WHERE article_id = ?;', // 获取一篇文章
         upOne: 'UPDATE article SET article_up = ? WHERE article_id = ?;' // 置顶一篇文章
+    },
+    // 栏目
+    sort: {
+        fetch: 'SELECT * FROM article_sort', // 获取栏目内容
+        add: 'INSERT INTO article_sort(name) VALUES (?) ', // 增添一个栏目
+        edit1: 'UPDATE sort SET name = ? WHERE id = ?', // 先将article表中的栏目进行更新
+        edit1: 'UPDATE article_sort SET name = ? WHERE id = ?', // 先将article表中的栏目进行更新
     }
 }
 

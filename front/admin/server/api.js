@@ -20,4 +20,9 @@ module.exports = {
     articleDelOne: '/article/delOne', // 删除一篇文章
     articleFetchOne: '/article/fetchOne', // 获取一篇文章
     articleUpOne: '/article/upOne', // 置顶一篇文章
+    articleEdit: '/article/edit', // 修改一篇文章
+
+    /*sort*/
+    sortFetch: '/sort/fetch', // 获取栏目信息
+    sortAdd: '/sort/add', // 增添新栏目信息
 };

@@ -3,6 +3,7 @@ let express = require('express');
 let router = express.Router();
 let user = require('../controller/user'); // 用户管理
 let article = require('../controller/article'); // 文章管理
+let sort = require('../controller/sort'); // 栏目管理
 let api = require('../api'); // 后台接口
 let upload = require('../utils/upload'); // 上传文件工具类
 
@@ -24,8 +25,14 @@ router.get(api.articleTypeFetch, article.getArticleType); // 获取文章类型
 router.post(api.upload, upload.single('avatar'), user.upload);// 上传照片
 router.post(api.articleAdd, article.add); // 添加文章
 router.post(api.articleDelOne, article.delOne); // 删除一篇文章
+router.post(api.articleEdit, article.edit); // 修改一篇文章
 router.post(api.articleUpOne, article.upOne); // 置顶一篇文章
 
+
+/*sort*/
+router.get(api.sortFetch, sort.fetch); // 获取栏目列表
+
+router.post(api.sortAdd, sort.add); // 新增一个栏目
 
 
 module.exports = router;

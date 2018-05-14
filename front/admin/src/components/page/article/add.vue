@@ -5,7 +5,7 @@
 		:rules="rules"
 		:show-message="false"
 	>
-		<el-form-item prop="title" size="medium">
+		<el-form-item prop="title" size="medium" class="title">
 			<el-input v-model="article.title" placeholder="请输入文章标题" ></el-input>
 			<el-button type="primary" round @click="dialogFormVisible = true">发布博客</el-button>
 		</el-form-item prop="content">
@@ -19,7 +19,7 @@
 		      	     	v-for="item in options"
 		      	     	:key="item.id"
 		      	     	:label="item.name"
-		      	     	:value="item.id">
+		      	     	:value="item.name">
 		      	   	</el-option>
 		      	 </el-select>
 		    </el-form-item>
@@ -118,10 +118,13 @@
 </script>
 
 <style scoped>
-	.el-input{
+	.title .el-input{
 		width: 85%;
 	}
-	.el-button{
+	.title .el-button{
 		width: 10%;
+	}
+	.markdown-body{
+		min-height: 500px
 	}
 </style>

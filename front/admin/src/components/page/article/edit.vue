@@ -5,21 +5,21 @@
 			:rules="rules"
 			:show-message="false"
 		>
-			<el-form-item prop="title" size="medium">
-				<el-input v-model="article.title" placeholder="请输入文章标题" ></el-input>
+			<el-form-item prop="title" size="medium" class="title">
+				<el-input v-model="article.title" placeholder="请输入文章标题"></el-input>
 				<el-button type="primary" round @click="dialogFormVisible = true">发布博客</el-button>
 			</el-form-item prop="content">
-			<el-form-item prop="content">
+			<el-form-item prop="content" class="content">
 	        	<mavon-editor ref="md" v-model="article.content" @imgAdd="$imgAdd"></mavon-editor>    
 			</el-form-item>
 			<el-dialog title="发布博客" :visible.sync="dialogFormVisible">
-			    <el-form-item label="文章分类" prop="type">
-			      	<el-select v-model="article.type" placeholder="请选择">
+			    <el-form-item label="文章分类" prop="name">
+			      	<el-select v-model="name" placeholder="请选择">
 			      	   	<el-option
 			      	     	v-for="item in options"
 			      	     	:key="item.id"
 			      	     	:label="item.name"
-			      	     	:value="item.id">
+			      	     	:value="item.name">
 			      	   	</el-option>
 			      	 </el-select>
 			    </el-form-item>
@@ -45,12 +45,10 @@
 					content: [
 						{required:true,}
 					],
-					type: [
-						{required:true,}
-					]
 				},
 				options:[ // 博客分类
 				],
+				name:'', // 使用新值，因为默认传值，否则不能正常显示
 			}
 		},
 		methods: {
@@ -72,14 +70,14 @@
 		       })
 		    },
 		    subArticle(formName){
-		    	var url = "/api/article/add";
+		    	var url = "/api/article/edit";
 		    	this.$refs[formName].validate((valid) => {
 		    	    if (valid) {
 		    	        this.$axios.post(url,{
-		    	        	title: this.article.title,
-		    	        	content: this.article.content,
-		    	        	type: this.article.type,
-		    	        	up: 0, // 默认不置顶
+		    	        	article_name: this.article.title,
+		    	        	article_content: this.article.content,
+		    	        	article_type: this.name,
+		    	        	article_id: this.articleId, // 从vuex里拿出的文章id
 		    	        }).then((res) => {
 		    	        	var data = res.data;
 		    	        	if(data.code == 200){
@@ -109,6 +107,7 @@
 			}).then((res) => {
 				let data = res.data;
 				if(res.status == 200){
+					console.log(data.list);
 					this.options = data.list;
 				}
 			}).catch((err) => {
@@ -127,7 +126,7 @@
 				if(data.code == 200){
 					this.article.title = data.article[0].article_name;
 					this.article.content = data.article[0].article_content;
-					this.article.type = data.article[0].article_type;
+					this.name = data.article[0].article_type;
 				}
 			}).catch((err) => {
 				console.log(err);
@@ -140,16 +139,19 @@
 		    },
 		    articleId(){
 		        return this.$store.state.article
-		    }
+		    },
 		},
 	}
 </script>
 
 <style scoped>
-	.el-input{
+	.title .el-input{
 		width: 85%;
 	}
-	.el-button{
+	.title .el-button{
 		width: 10%;
+	}
+	.markdown-body{
+		min-height: 500px
 	}
 </style>

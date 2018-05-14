@@ -1,6 +1,7 @@
 <template>
 	<el-footer>
 		Copyright &copy; <a href="https://github.com/WxyNeverGiveUp">wuxy720-github</a>
+		Powered & Designed by <a href="javascript:;">wuxy720</a>
 	</el-footer>
 </template>
 

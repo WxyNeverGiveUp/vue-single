@@ -29,11 +29,12 @@
                     <el-submenu index="3">
                         <template slot="title">栏目管理</template>
                         <el-menu-item-group>
-                            <el-menu-item index="3-1">栏目列表</el-menu-item>
-                            <el-menu-item index="3-2">选项2</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
-                            <el-menu-item index="3-3">选项3</el-menu-item>
+                            <el-menu-item index="3-1">
+                                <router-link to="/index/sort/list">栏目列表</router-link>
+                            </el-menu-item>
+                            <el-menu-item index="3-2">
+                                <router-link to="/index/sort/add">添加栏目</router-link>
+                            </el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                     <el-submenu index="4">
@@ -76,6 +77,9 @@
 </script>
 
 <style>
+    .el-main{
+        min-height: 600px;
+    }
     .el-container{
         display: block;
         margin-left: 300px;

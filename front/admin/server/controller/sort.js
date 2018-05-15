@@ -59,4 +59,88 @@ module.exports = {
             }
         })
     },
+    /**
+     * 修改文章表栏目
+     * params new_type 新的栏目名
+     * params old_type 旧的栏目名
+     * return 文章表中栏目是否修改成功的信息
+    */
+    editArticle(req,res,next){
+        let sql = $sql.sort.editArticle;
+        let params = req.body;
+        console.log("sql",sql);
+        console.log("params",params);
+        func.connPool(sql,[params.new_type, params.old_type],function(err,result) {
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                next()
+            }
+        })
+    },
+    /**
+     * 删除栏目表里的栏目
+     * params name 栏目表中，新的栏目名
+     * params id 栏目表中id
+     * return 栏目表中栏目
+    */
+    editSort(req,res){
+        let sql = $sql.sort.editSort;
+        let params = req.body;
+        console.log("sql",sql);
+        console.log("params",params);
+        func.connPool(sql,[params.name, params.id],function(err,result) {
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                res.json({
+                    code: '200',
+                    msg: '修改成功',
+                })
+            }
+        })
+    },
+    /**
+     * 删除文章表栏目
+     * params article_type 栏目表中的
+     * return 文章表中栏目是否修改成功的信息
+    */
+    delArticle(req,res,next){
+        let sql = $sql.sort.delArticle;
+        let params = req.body;
+        console.log("sql",sql);
+        console.log("params",params);
+        func.connPool(sql,[params.article_type],function(err,result) {
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                next()
+            }
+        })
+    },
+    /**
+     * 删除栏目表里的栏目
+     * params id 栏目表中id
+     * return 是否删除栏目表中栏目
+    */
+    delSort(req,res){
+        let sql = $sql.sort.delSort;
+        let params = req.body;
+        console.log("sql",sql);
+        console.log("params",params);
+        func.connPool(sql,[params.id],function(err,result) {
+            if(err){
+                console.log(err);
+            }
+            if(result){
+                res.json({
+                    code: '200',
+                    msg: '删除栏目成功',
+                })
+            }
+        })
+    }
 }

@@ -25,4 +25,6 @@ module.exports = {
     /*sort*/
     sortFetch: '/sort/fetch', // 获取栏目信息
     sortAdd: '/sort/add', // 增添新栏目信息
+    sortEdit: '/sort/edit', // 修改栏目信息
+    sortDel: '/sort/del', // 删除栏目信息
 };

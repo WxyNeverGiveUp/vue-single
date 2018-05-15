@@ -34,7 +34,7 @@
 			                </el-button>
 			                <el-button
 			                    type="danger"
-			                    @click="delOne(scope.row.id)">删除
+			                    @click="del(scope.row.id,scope.row.name)">删除
 			                </el-button>
 			            </template>
 			        </el-table-column>
@@ -83,37 +83,56 @@
 				/*dialog*/
                 dialogFormVisible: false,
                 /* 修改的信息 */
-                updateData:[],
+                updateData:{
+                },
                 formLabelWidth: '120px',
 			}
 		},
 		methods: {
 			toUpdate: function(id,name){
 				this.dialogFormVisible = true;
-				this.update.name = name; // 显示默认项
-				this.update.id = id; // 传值
+				this.updateData.name = name; // 显示默认项
+				this.updateData.id = id; // 传值
+				this.oldName = name; // 原先的类名，供修改分类名时，修改文章表里原先的类名
 			},
 			/*更新栏目名称*/
 			update: function(){
 				let url = '/api/sort/edit'
+				this.$axios.post(url,{
+					new_type: this.updateData.name,
+					old_type: this.oldName,
+					name: this.updateData.name,
+					id: this.updateData.id
+				}).then((res) => {
+					let data = res.data
+					if(data.code == 200){
+						this.$message({
+							type: "success",
+							message: data.msg
+						})
+					}
+				}).catch((err) => {
+					console.log(err);
+				})
 			},
-			delOne: function(id){
-				this.$confirm("此操作将永久删除此文章，是否继续?", "提示", {
+			del: function(id,name){
+				this.$confirm("此操作将永久删除此栏目，是否继续?", "提示", {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning',
 				}).then(() => {
-					let url= "/api/article/delOne";
+					let url= "/api/sort/del";
 					this.$axios.post(url,{
-						article_id: id,
+						id: id,
+						article_type: name,
 					}).then((res)=>{
 						let data = res.data;
 						if(data.code == 200){
 							this.$message({
 								type: 'success',
-								message: '删除成功'
+								message: data.msg
 							})
-							this.paginationData.tableData.splice(this.paginationData.tableData.findIndex((tableData) => tableData.article_id === id),1)
+							this.paginationData.tableData.splice(this.paginationData.tableData.findIndex((tableData) => tableData.id === id),1)
 						}
 					}).catch((err)=>{
 						console.log(err);

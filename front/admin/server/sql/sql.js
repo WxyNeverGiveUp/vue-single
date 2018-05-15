@@ -24,10 +24,12 @@ var sqlMap = {
     },
     // 栏目
     sort: {
-        fetch: 'SELECT * FROM article_sort', // 获取栏目内容
-        add: 'INSERT INTO article_sort(name) VALUES (?) ', // 增添一个栏目
-        edit1: 'UPDATE sort SET name = ? WHERE id = ?', // 先将article表中的栏目进行更新
-        edit1: 'UPDATE article_sort SET name = ? WHERE id = ?', // 先将article表中的栏目进行更新
+        fetch: 'SELECT * FROM article_sort;', // 获取栏目内容
+        add: 'INSERT INTO article_sort(name) VALUES (?);', // 增添一个栏目
+        editArticle: 'UPDATE article SET article_type = ? WHERE article_type = ?;', // 先将article表中的栏目进行更新
+        editSort: 'UPDATE article_sort SET name = ? WHERE id = ?;', // 先将article表中的栏目进行更新
+        delArticle: 'UPDATE article SET article_type = "暂无栏目" WHERE article_type = ?;', // 先删除文章表中的栏目，设置为暂无栏目
+        delSort: 'DELETE FROM article_sort WHERE id = ?', // 后删除栏目表中的栏目
     }
 }
 

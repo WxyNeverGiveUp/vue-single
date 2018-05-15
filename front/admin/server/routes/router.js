@@ -33,6 +33,8 @@ router.post(api.articleUpOne, article.upOne); // 置顶一篇文章
 router.get(api.sortFetch, sort.fetch); // 获取栏目列表
 
 router.post(api.sortAdd, sort.add); // 新增一个栏目
+router.post(api.sortEdit, sort.editArticle, sort.editSort); // 修改一个栏目,先将文章表的栏目名修改，再将栏目表里的栏目名修改
+router.post(api.sortDel, sort.delArticle, sort.delSort); // 修改一个栏目,先将文章表的栏目名修改，再将栏目表里的栏目名修改
 
 
 module.exports = router;

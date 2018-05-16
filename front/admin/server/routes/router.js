@@ -4,6 +4,7 @@ let router = express.Router();
 let user = require('../controller/user'); // 用户管理
 let article = require('../controller/article'); // 文章管理
 let sort = require('../controller/sort'); // 栏目管理
+let comment = require('../controller/comment'); // 评论管理
 let api = require('../api'); // 后台接口
 let upload = require('../utils/upload'); // 上传文件工具类
 
@@ -36,5 +37,10 @@ router.post(api.sortAdd, sort.add); // 新增一个栏目
 router.post(api.sortEdit, sort.editArticle, sort.editSort); // 修改一个栏目,先将文章表的栏目名修改，再将栏目表里的栏目名修改
 router.post(api.sortDel, sort.delArticle, sort.delSort); // 修改一个栏目,先将文章表的栏目名修改，再将栏目表里的栏目名修改
 
+/*comment*/
+router.get(api.commentFetch, comment.fetch); // 获取评论列表
+
+router.post(api.commentAdd, comment.add); // 添加一条评论
+router.post(api.commentDel, comment.del); // 删除一条评论
 
 module.exports = router;

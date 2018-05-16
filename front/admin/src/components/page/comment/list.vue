@@ -17,39 +17,30 @@
 			            label="序号">
 			        </el-table-column>
 			        <el-table-column
+			            prop="comment_content"
+			            label="评论内容">
+			        </el-table-column>
+			        <el-table-column
+			            prop="username"
+			            width="180"
+			            label="评论者">
+			        </el-table-column>
+			        <el-table-column
+			            prop="comment_time"
+			            label="评论时间"
+			            width="180">
+			        </el-table-column>
+			        <el-table-column
 			            prop="article_name"
-			            label="文章标题"
-			            width="180">
-			        </el-table-column>
-			        <el-table-column
-			            prop="article_type"
-			            label="文章分类">
-			        </el-table-column>
-			        <el-table-column
-			            prop="article_time"
-			            label="发布时间"
-			            width="180">
-			        </el-table-column>
-			        <el-table-column
-			            prop="article_up"
-			            label="是否置顶">
+			            label="所属文章">
 			        </el-table-column>
 			        <el-table-column
 			            label="操作"
 			            width="300">
 			            <template scope="scope">
-			            	<el-button
-								type="success"
-			            		@click="upOne(scope.$index,scope.row.article_id,scope.row)">
-			            		置顶/取消置顶
-			            	</el-button>
-			                <el-button
-			                    type="primary"
-			                    @click="toUpdate(scope.row.article_id)">修改
-			                </el-button>
 			                <el-button
 			                    type="danger"
-			                    @click="delOne(scope.row.article_id)">删除
+			                    @click="delOne(scope.row.c_id)">删除
 			                </el-button>
 			            </template>
 			        </el-table-column>
@@ -86,22 +77,15 @@
 			}
 		},
 		methods: {
-				toUpdate: function(id){
-					// 保存是哪篇文章
-					this.$store.commit('chooseArticle',id);
-					this.$router.push({
-						path: './edit',
-					})
-				},
 				delOne: function(id){
-					this.$confirm("此操作将永久删除此文章，是否继续?", "提示", {
+					this.$confirm("此操作将永久删除此评论，是否继续?", "提示", {
 						confirmButtonText: '确定',
 						cancelButtonText: '取消',
 						type: 'warning',
 					}).then(() => {
-						let url= "/api/article/delOne";
+						let url= "/api/comment/del";
 						this.$axios.post(url,{
-							article_id: id,
+							c_id: id,
 						}).then((res)=>{
 							let data = res.data;
 							if(data.code == 200){
@@ -109,7 +93,7 @@
 									type: 'success',
 									message: '删除成功'
 								})
-								this.paginationData.tableData.splice(this.paginationData.tableData.findIndex((tableData) => tableData.article_id === id),1)
+								this.paginationData.tableData.splice(this.paginationData.tableData.findIndex((tableData) => tableData.c_id === id),1)
 							}
 						}).catch((err)=>{
 							console.log(err);
@@ -120,31 +104,6 @@
 	                        message: '已取消删除'
 	                    });          
                 	});
-				},
-				/*置顶文章或取消置顶*/
-				upOne: function(index,id,row){
-					let url = "/api/article/upOne";
-					let up = 1;
-					let newContent = "置顶";
-					if(row.article_up == "置顶"){
-						up = 0;
-						newContent = "未置顶"
-					}
-					this.$axios.post(url,{
-						article_id: id,
-						article_up: up
-					}).then((res)=>{
-						let data = res.data;
-						if(data.code == 200){
-							this.paginationData.tableData[index].article_up = newContent; // 更改dom 信息
-							this.$message({
-								type: 'success',
-								message: data.msg
-							})
-						}
-					}).catch((err)=>{
-						console.log(err);
-					})
 				},
 				/*计算分页*/
 				computerArr: function(){
@@ -181,13 +140,13 @@
 		},
 		mounted(){
         	this.load = true;
-			let url = "/api/article/fetch/";
+			let url = "/api/comment/fetch/";
 			this.$axios.get(url,{
 			}).then((res) => {
 				let data = res.data;
 				if (data.code == 200) {
-				    this.paginationData.infoList = data.articleList;
-				    this.paginationData.total = data.articleList.length;
+				    this.paginationData.infoList = data.commentList;
+				    this.paginationData.total = data.commentList.length;
 				    this.load = false;
 				    this.computerArr();
 				}else{

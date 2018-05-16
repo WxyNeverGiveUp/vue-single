@@ -29,7 +29,18 @@ var sqlMap = {
         editArticle: 'UPDATE article SET article_type = ? WHERE article_type = ?;', // 先将article表中的栏目进行更新
         editSort: 'UPDATE article_sort SET name = ? WHERE id = ?;', // 先将article表中的栏目进行更新
         delArticle: 'UPDATE article SET article_type = "暂无栏目" WHERE article_type = ?;', // 先删除文章表中的栏目，设置为暂无栏目
-        delSort: 'DELETE FROM article_sort WHERE id = ?', // 后删除栏目表中的栏目
+        delSort: 'DELETE FROM article_sort WHERE id = ?；', // 后删除栏目表中的栏目
+    },
+    // 评论
+    comment: {
+        fetch: `SELECT comment.c_id, comment.comment_content, comment.comment_time, admin_user.username, article.article_name
+                FROM comment
+                INNER JOIN admin_user
+                ON comment.comment_user_id = admin_user.user_id
+                INNER JOIN article
+                ON comment.comment_article_id = article.article_id;`, // 获取评论内容(三表联合查询)
+        add: 'INSERT INTO comment(comment_content, comment_user_id, comment_time, comment_article_id) VALUES(?, ?, ?, ?);', // 添加一条评论
+        del: 'DELETE FROM comment WHERE c_id = ?;', // 删除一条评论
     }
 }
 

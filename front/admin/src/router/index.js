@@ -10,6 +10,7 @@ import articleList from '@/components/page/article/list' // 文章列表
 import articleEdit from '@/components/page/article/edit' // 修改文章
 import sortList from '@/components/page/sort/list' // 栏目列表
 import sortAdd from '@/components/page/sort/add' // 添加栏目
+import commentList from '@/components/page/comment/list' // 评论列表
 
 Vue.use(Router)
 
@@ -69,6 +70,11 @@ export default new Router({
                 // 添加栏目
                 path: '/index/sort/add',
                 component: sortAdd,
+            },
+            {
+                // 评论列表
+                path: '/index/comment/list',
+                component: commentList,
             }
         ]
     },

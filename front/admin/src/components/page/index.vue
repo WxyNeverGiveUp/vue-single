@@ -40,7 +40,9 @@
                     <el-submenu index="4">
                         <template slot="title">评论管理</template>
                         <el-menu-item-group>
-                            <el-menu-item index="3-1">评论列表</el-menu-item>
+                            <el-menu-item index="3-1">
+                                <router-link to="/index/comment/list">评论列表</router-link>
+                            </el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
                 </el-menu>

@@ -181,7 +181,7 @@
 		},
 		mounted(){
         	this.load = true;
-			let url = "/api/article/fetch/";
+			let url = "/api/article/fetch";
 			this.$axios.get(url,{
 			}).then((res) => {
 				let data = res.data;

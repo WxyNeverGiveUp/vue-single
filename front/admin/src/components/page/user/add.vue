@@ -33,7 +33,6 @@
 </template>
 
 <script>
-	
 	export default{
 		data(){
 			var validatePass2 = (rule, value, callback) => {

@@ -4,7 +4,7 @@
             <h1>Wuxy 720</h1>
             <h2>一个前端小白的自我修养</h2>
             <p>
-                <router-link to="/index/list">Blog</router-link>
+                <router-link to="/list">Blog</router-link>
             </p>
             <p><a href="https://github.com/WxyNeverGiveUp" target="_blank">Github</a></p>
             <p><a href="javascript:;">Email: 17678398501@163.com</a></p>
@@ -13,20 +13,11 @@
         <canvas width="1920" height="920"></canvas>
     </div>
 </template>
+
 <script type="text/javascript">
 import '../assets/js/index.js';
-export default{
-    data() {
-        return{
-            
-        } 
-    },
-    methods: {
-
-    }
-}
-
 </script>
+
 <style scoped>
      html, body {
         overflow: hidden;

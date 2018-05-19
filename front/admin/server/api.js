@@ -3,6 +3,7 @@ let path = '/api';
 
 module.exports = {
    
+    /*---------------------- 后台管理接口 ---------------------------------*/
     /*用户管理*/
     userLogin: '/login',
     userAddTourist: '/addTourist', // 添加游客用户
@@ -15,7 +16,7 @@ module.exports = {
     /*文章管理*/
     upload: '/article/upload', // 上传文件
     articleAdd: '/article/add', // 添加文章
-    articleFetch: '/article/fetch', // 添加文章
+    articleFetch: '/article/fetch', // 获取文章
     articleTypeFetch: '/article/typeFetch', // 添加文章
     articleDelOne: '/article/delOne', // 删除一篇文章
     articleFetchOne: '/article/fetchOne', // 获取一篇文章
@@ -32,4 +33,11 @@ module.exports = {
     commentFetch: '/comment/fetch', // 获取评论信息
     commentAdd: '/comment/add', // 添加一条评论
     commentDel: '/comment/del', // 删除一条评论
+
+    /*---------------------- 后台管理接口End ------------------------------*/
+
+    /*---------------------- 前台接口 ------------------------------------*/
+    sortFetch: '/sortFetch', // 根据选择的tag类型 返回对应文章
+
+    /*---------------------- 前台接口End ---------------------------------*/
 };

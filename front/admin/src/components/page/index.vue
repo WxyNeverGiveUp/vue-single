@@ -8,10 +8,10 @@
                         <template slot="title">账号管理</template>
                         <el-menu-item-group>
                             <el-menu-item index="1-1">
-                                <router-link :to="/index/user/list">账号列表</router-link>
+                                <router-link to="/index/user/list">账号列表</router-link>
                             </el-menu-item>
                             <el-menu-item index="1-2">
-                                <router-link :to="/index/user/add">添加账号</router-link>
+                                <router-link to="/index/user/add">添加账号</router-link>
                             </el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
@@ -19,10 +19,10 @@
                     <template slot="title">文章管理</template>
                         <el-menu-item-group>
                             <el-menu-item index="2-1">
-                                <router-link :to="/index/article/list">文章列表</router-link>
+                                <router-link to="/index/article/list">文章列表</router-link>
                             </el-menu-item>
                             <el-menu-item index="2-2">
-                                <router-link :to="/index/article/add">添加文章</router-link>
+                                <router-link to="/index/article/add">添加文章</router-link>
                             </el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
@@ -30,10 +30,10 @@
                         <template slot="title">栏目管理</template>
                         <el-menu-item-group>
                             <el-menu-item index="3-1">
-                                <router-link :to="/index/sort/list">栏目列表</router-link>
+                                <router-link to="/index/sort/list">栏目列表</router-link>
                             </el-menu-item>
                             <el-menu-item index="3-2">
-                                <router-link :to="/index/sort/add">添加栏目</router-link>
+                                <router-link to="/index/sort/add">添加栏目</router-link>
                             </el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
@@ -41,7 +41,7 @@
                         <template slot="title">评论管理</template>
                         <el-menu-item-group>
                             <el-menu-item index="3-1">
-                                <router-link :to="/index/comment/list">评论列表</router-link>
+                                <router-link to="/index/comment/list">评论列表</router-link>
                             </el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>

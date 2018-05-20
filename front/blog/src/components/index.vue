@@ -19,7 +19,7 @@ import '../assets/js/index.js';
 </script>
 
 <style scoped>
-     html, body {
+    html, body {
         overflow: hidden;
         margin: 0;
     }

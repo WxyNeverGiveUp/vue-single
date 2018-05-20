@@ -16,7 +16,7 @@ var sqlMap = {
     article: {
         add: 'INSERT INTO article(article_name, article_time, article_content, article_up, article_type) VALUES(?, ?, ?, ?, ?);', // 添加文章
         edit: 'UPDATE article SET article_name = ?, article_content = ?, article_type = ? WHERE article_id = ?;', // 修改文章
-        fetch: 'SELECT * FROM article;', // 获取文章内容
+        fetch: 'SELECT * FROM article ORDER BY article_id DESC;', // 获取文章内容
         getArticleType: 'SELECT * FROM article_sort;', // 获取文章类型列表
         delOne: 'DELETE FROM article WHERE article_id = ?;', // 删除一篇文章
         fetchOne: 'SELECT * FROM article WHERE article_id = ?;', // 获取一篇文章
@@ -41,6 +41,11 @@ var sqlMap = {
                 ON comment.comment_article_id = article.article_id;`, // 获取评论内容(三表联合查询)
         add: 'INSERT INTO comment(comment_content, comment_user_id, comment_time, comment_article_id) VALUES(?, ?, ?, ?);', // 添加一条评论
         del: 'DELETE FROM comment WHERE c_id = ?;', // 删除一条评论
+    },
+
+    // blog前端的所有内容
+    blog: {
+        // 列表页
     }
 }
 

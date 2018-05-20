@@ -2,10 +2,10 @@
 	<div>
 		<header>
 			<router-link to="/">
-				wuxy 720
+				WUXY720
 			</router-link>
 		</header>
-		<div class="tag">
+		<div class="tag-list">
 			<ul>
 				<li @click="articleAllFetch">
 					<el-tag type="success">
@@ -23,8 +23,9 @@
 			<ul>
 				<li v-for="item in paginationData.tableData" >
 					<span class="time">{{ item.article_time }}</span>
-					<el-tag>{{ item.article_type }}</el-tag>
-					<h2 @click="findDetail">{{ item.article_name }}</h2>
+					<el-tag class="tag">{{ item.article_type }}</el-tag>
+					<router-link :to="{ name:'detail', params:{ id: item.article_id }}">{{ item.article_name }}</router-link>
+					<!-- <h2 @click="findDetail">{{ item.article_name }}</h2> -->
 				</li>
 			</ul>
 		</div>
@@ -61,11 +62,6 @@
 			this.sortFetch();
 		},
 		methods: {
-			findDetail: function(){ // 查看详情的时候传参
-				this.$router.push({
-					path: './detail'
-				})
-			},
 			/* 获取所有文章 */
 			articleAllFetch: function(){
 				/* 获取文章 */
@@ -143,20 +139,20 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	header{
 		margin: 50px auto 15px;
 		text-align: center;
-		word-spacing: 5px;
+		letter-spacing: 5px;
 	}
-	.tag{
+	.tag-list{
 		text-align: center;
 	}
-	.tag ul li{
+	.tag-list ul li{
 		margin: 20px 5px 0 5px;
 		display: inline-block;
 	}
-	.tag .el-tag{
+	.tag-list .tag{
 		cursor: pointer;
 	}
 	.main{
@@ -184,18 +180,18 @@
 		left: 0;
 		top: 33px;
 	}
-	.main .el-tag{
+	.main .tag{
 		font-size: 13px;
 		position: absolute;
 		left: 20px;
-		top: 60px;
+		top: 55px;
 	}
-	.main h2{
+	.main a{
 		font-size: 20px;
 		letter-spacing: 1px;
 		margin-left: 140px;
 	}
-	.main h2:hover{
+	.main a:hover{
         color: #f33;
 		cursor: pointer;
 	}
